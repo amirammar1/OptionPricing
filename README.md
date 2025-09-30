@@ -38,19 +38,6 @@ print(price)
 option-pricer bs --spot 100 --strike 100 --rate 0.05 --vol 0.2 --maturity 1 --type call
 ```
 
-## Project Structure
-```
-option_pricing/        # Library source
-  black_scholes.py     # Closed-form formulas
-  monte_carlo.py       # Simulation engines
-  models.py            # Data structures
-  analytics.py         # Greeks, helpers
-  cli.py               # Command-line interface
-  __init__.py
-scripts/
-  benchmark.py         # MC vs BS comparison
-tests/                 # Unit tests
-```
 
 ## Benchmarks
 Run:
