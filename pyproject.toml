@@ -1,0 +1,63 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "option-pricing"
+version = "0.1.0"
+description = "Black-Scholes and Monte Carlo option pricing with benchmarking and CLI"
+authors = [ { name = "Your Name", email = "you@example.com" } ]
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+keywords = ["finance", "options", "black-scholes", "monte carlo", "quantitative finance"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "License :: OSI Approved :: MIT License",
+    "Intended Audience :: Financial and Insurance Industry",
+    "Topic :: Office/Business :: Financial :: Investment",
+    "Typing :: Typed"
+]
+
+dependencies = [
+    "numpy>=1.23,<2.0",
+    "scipy>=1.10,<2.0"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-cov",
+    "mypy",
+    "ruff",
+    "rich"
+]
+
+[project.scripts]
+option-pricer = "option_pricing.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["option_pricing*"]
+
+[tool.mypy]
+python_version = "3.9"
+strict = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+warn_unused_configs = true
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "UP", "B", "ANN", "C4"]
+ignore = []
+
+[tool.ruff.lint.per-file-ignores]
+"option_pricing/models.py" = ["I001"]
+
+[tool.pytest.ini_options]
+addopts = "-ra -q --cov=option_pricing --cov-report=term-missing"
+python_files = "test_*.py"
